@@ -18,7 +18,7 @@ public class Place {
 
     private String name;
 
-    private String adress;
+    private String address;
 
     @ManyToOne
     @JoinColumn(name = "cities_id")
