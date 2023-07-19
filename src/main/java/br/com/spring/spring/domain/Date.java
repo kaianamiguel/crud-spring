@@ -1,6 +1,8 @@
 package br.com.spring.spring.domain;
 
+import br.com.spring.spring.domain.DTO.RequestDatesDTO;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -31,4 +33,11 @@ public class Date {
     @ManyToOne
     @JoinColumn(name = "places_id")
     private Place place;
+
+    public Date(@Valid RequestDatesDTO requestDatesDTO) {
+        this.user = requestDatesDTO.user();
+        this.user1 = requestDatesDTO.user1();
+        this.date = requestDatesDTO.date();
+        this.place = requestDatesDTO.place();
+    }
 }

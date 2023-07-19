@@ -1,6 +1,7 @@
 package br.com.spring.spring.domain;
 
 
+import br.com.spring.spring.domain.DTO.RequestCategoriesDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,4 +19,8 @@ public class Category {
     private String id;
 
     private String name;
+
+    public Category(RequestCategoriesDTO requestCategoriesDTO) {
+        this.name = requestCategoriesDTO.name();
+    }
 }
