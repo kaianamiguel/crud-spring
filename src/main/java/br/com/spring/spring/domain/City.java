@@ -1,5 +1,6 @@
 package br.com.spring.spring.domain;
 
+import br.com.spring.spring.domain.DTO.RequestCitiesDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +9,7 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 public class City {
 
@@ -17,4 +18,13 @@ public class City {
     private String id;
 
     private String name;
+
+    public City(RequestCitiesDTO requestCitiesDTO) {
+        this.name = requestCitiesDTO.name();
+    }
+
+    public City(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

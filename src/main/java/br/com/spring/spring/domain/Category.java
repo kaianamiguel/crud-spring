@@ -10,7 +10,7 @@ import lombok.*;
 @EqualsAndHashCode (of = "id")
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 public class Category {
 
@@ -22,5 +22,10 @@ public class Category {
 
     public Category(RequestCategoriesDTO requestCategoriesDTO) {
         this.name = requestCategoriesDTO.name();
+    }
+
+    public Category(String id, String name) {
+        this.id = id;
+        this.name = name;
     }
 }

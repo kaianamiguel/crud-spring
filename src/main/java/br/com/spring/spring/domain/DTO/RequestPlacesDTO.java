@@ -1,0 +1,7 @@
+package br.com.spring.spring.domain.DTO;
+
+import br.com.spring.spring.domain.Category;
+import br.com.spring.spring.domain.City;
+
+public record RequestPlacesDTO(String name, String address, City cities_id, Category categories_id, Integer value_in_cents) {
+}
