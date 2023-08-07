@@ -2,7 +2,7 @@ package br.com.spring.spring.controller;
 
 import br.com.spring.spring.domain.Date;
 import br.com.spring.spring.domain.DateRepository;
-import br.com.spring.spring.domain.DTO.RequestDatesDTO;
+import br.com.spring.spring.domain.RequestDatesDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

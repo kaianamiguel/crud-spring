@@ -1,6 +1,6 @@
 package br.com.spring.spring.controller;
 
-import br.com.spring.spring.domain.DTO.RequestUsersDTO;
+import br.com.spring.spring.domain.RequestUsersDTO;
 import br.com.spring.spring.domain.User;
 import br.com.spring.spring.domain.UserRepository;
 import jakarta.validation.Valid;

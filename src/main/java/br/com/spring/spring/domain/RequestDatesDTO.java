@@ -1,4 +1,4 @@
-package br.com.spring.spring.domain.DTO;
+package br.com.spring.spring.domain;
 
 import br.com.spring.spring.domain.Place;
 import br.com.spring.spring.domain.User;

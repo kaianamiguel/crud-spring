@@ -1,9 +1,9 @@
 package br.com.spring.spring.domain;
 
-import br.com.spring.spring.domain.DTO.RequestPlacesDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 
 @Entity(name = "places")
 @Table(name = "places")
@@ -12,7 +12,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Place {
+public class Place implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

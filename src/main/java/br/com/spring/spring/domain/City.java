@@ -1,8 +1,9 @@
 package br.com.spring.spring.domain;
 
-import br.com.spring.spring.domain.DTO.RequestCitiesDTO;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 
 @Entity(name = "cities")
 @Table(name = "cities")
@@ -11,7 +12,9 @@ import lombok.*;
 @Setter
 //@AllArgsConstructor
 @NoArgsConstructor
-public class City {
+public class City implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

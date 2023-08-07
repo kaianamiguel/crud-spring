@@ -1,10 +1,10 @@
 package br.com.spring.spring.domain;
 
-import br.com.spring.spring.domain.DTO.RequestDatesDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity(name = "dates")
@@ -14,7 +14,9 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Date {
+public class Date implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

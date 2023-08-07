@@ -1,6 +1,6 @@
 package br.com.spring.spring.controller;
 
-import br.com.spring.spring.domain.DTO.RequestPlacesDTO;
+import br.com.spring.spring.domain.RequestPlacesDTO;
 import br.com.spring.spring.domain.Place;
 import br.com.spring.spring.domain.PlaceRepository;
 import jakarta.validation.Valid;

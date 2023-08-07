@@ -1,9 +1,10 @@
 package br.com.spring.spring.domain;
 
 
-import br.com.spring.spring.domain.DTO.RequestCategoriesDTO;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 
 @Entity(name = "categories")
 @Table(name = "categories")
@@ -12,8 +13,9 @@ import lombok.*;
 @Setter
 //@AllArgsConstructor
 @NoArgsConstructor
-public class Category {
+public class Category implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue (strategy = GenerationType.UUID)
     private String id;

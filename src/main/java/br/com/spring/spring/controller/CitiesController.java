@@ -2,7 +2,7 @@ package br.com.spring.spring.controller;
 
 import br.com.spring.spring.domain.City;
 import br.com.spring.spring.domain.CityRepository;
-import br.com.spring.spring.domain.DTO.RequestCitiesDTO;
+import br.com.spring.spring.domain.RequestCitiesDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

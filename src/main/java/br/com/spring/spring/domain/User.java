@@ -1,9 +1,10 @@
 package br.com.spring.spring.domain;
 
-import br.com.spring.spring.domain.DTO.RequestUsersDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.*;
+
+import java.io.Serializable;
 
 @Entity(name = "users")
 @Table(name = "users")
@@ -12,7 +13,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
