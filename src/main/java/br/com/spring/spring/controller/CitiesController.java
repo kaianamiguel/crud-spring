@@ -24,7 +24,7 @@ public class CitiesController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity registerCities(@RequestBody @Valid RequestCitiesDTO data) {
+    public ResponseEntity registerCity(@RequestBody @Valid RequestCitiesDTO data) {
         City newCity = new City(data);
         repository.save(newCity);
 

@@ -23,7 +23,7 @@ public class PlacesController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity registerPlaces(@RequestBody @Valid RequestPlacesDTO data){
+    public ResponseEntity registerPlace(@RequestBody @Valid RequestPlacesDTO data){
         Place newPlace = new Place(data);
         repository.save(newPlace);
 

@@ -23,7 +23,7 @@ public class CategoriesController {
     };
 
     @PostMapping("/register")
-    public ResponseEntity registerCategories(@RequestBody @Valid RequestCategoriesDTO data) {
+    public ResponseEntity registerCategory(@RequestBody @Valid RequestCategoriesDTO data) {
         Category newCategory = new Category(data);
         repository.save(newCategory);
         return ResponseEntity.ok().build();
