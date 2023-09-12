@@ -35,14 +35,20 @@ public class UsersController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity updateUser( @RequestBody @Valid RequestUsersDTO data) {
+    public ResponseEntity updateUser(@RequestBody @Valid RequestUsersDTO data) {
+        //Busca o usuario pelo id e encapsula dentro de um Optional para não haver problemas de NullPointer
         Optional<User> optionalUser = repository.findById(data.id());
 
+        //Verifica se o Optional está preenchido
         if(optionalUser.isPresent()) {
+
+            //Pega o Optional e altera os dados
             User user = optionalUser.get();
             user.setName(data.name());
             user.setActive(data.active());
             user.setPassword((data.password()));
+
+            repository.save(user);
 
             return ResponseEntity.ok(user);
         } else {

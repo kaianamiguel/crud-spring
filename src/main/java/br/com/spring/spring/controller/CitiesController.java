@@ -3,10 +3,13 @@ package br.com.spring.spring.controller;
 import br.com.spring.spring.domain.City;
 import br.com.spring.spring.domain.CityRepository;
 import br.com.spring.spring.domain.RequestCitiesDTO;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cities")
@@ -30,4 +33,23 @@ public class CitiesController {
 
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/update")
+    public ResponseEntity updateCity(@RequestBody @Valid RequestCitiesDTO data) {
+        Optional<City> cityOptional = repository.findById(data.id());
+
+        if(cityOptional.isPresent()) {
+            City city = cityOptional.get();
+
+            city.setName(data.name());
+
+            repository.save(city);
+
+            return ResponseEntity.ok(city);
+        } else {
+            throw new EntityNotFoundException();
+        }
+
+    }
+
 }

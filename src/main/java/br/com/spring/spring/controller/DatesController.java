@@ -1,12 +1,13 @@
 package br.com.spring.spring.controller;
 
-import br.com.spring.spring.domain.Date;
-import br.com.spring.spring.domain.DateRepository;
-import br.com.spring.spring.domain.RequestDatesDTO;
+import br.com.spring.spring.domain.*;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/dates")
@@ -28,5 +29,25 @@ public class DatesController {
 
         return ResponseEntity.ok().build();
 
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity updateDate(@RequestBody @Valid RequestDatesDTO data) {
+        Optional<Date> dateOptional = repository.findById(data.id());
+
+        if (dateOptional.isPresent()) {
+            Date date = dateOptional.get();
+
+            date.setUser(data.user());
+            date.setUser1(data.user1());
+            date.setDate(data.date());
+            date.setPlace(data.place());
+
+            repository.save(date);
+
+            return ResponseEntity.ok(date);
+        } else {
+            throw new EntityNotFoundException();
+        }
     }
 }
