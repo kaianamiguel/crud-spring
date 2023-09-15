@@ -10,7 +10,7 @@ import java.io.Serializable;
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class City implements Serializable {
 
@@ -20,14 +20,13 @@ public class City implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    private Boolean active;
+
     private String name;
 
     public City(RequestCitiesDTO requestCitiesDTO) {
+        this.active = requestCitiesDTO.active();
         this.name = requestCitiesDTO.name();
     }
 
-    public City(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

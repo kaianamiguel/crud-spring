@@ -2,6 +2,7 @@ package br.com.spring.spring.controller;
 
 import br.com.spring.spring.domain.*;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,20 @@ public class PlacesController {
             repository.save(place);
 
             return ResponseEntity.ok(place);
+        } else {
+            throw new EntityNotFoundException();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deletePlace(@PathVariable String id){
+        Optional<Place> optionalPlace = repository.findById(id);
+        if (optionalPlace.isPresent()) {
+            Place place = optionalPlace.get();
+            place.setActive(false);
+
+            return ResponseEntity.noContent().build();
         } else {
             throw new EntityNotFoundException();
         }

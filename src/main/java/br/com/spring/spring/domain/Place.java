@@ -20,6 +20,8 @@ public class Place implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    private Boolean active;
+
     private String name;
 
     private String address;
@@ -35,6 +37,7 @@ public class Place implements Serializable {
     private Integer value_in_cents;
 
     public Place(RequestPlacesDTO requestPlacesDTO) {
+        this.active = requestPlacesDTO.active();
         this.name = requestPlacesDTO.name();
         this.address = requestPlacesDTO.address();
         this.cities_id = requestPlacesDTO.cities_id();

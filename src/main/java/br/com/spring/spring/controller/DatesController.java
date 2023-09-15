@@ -2,6 +2,7 @@ package br.com.spring.spring.controller;
 
 import br.com.spring.spring.domain.*;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,4 +51,20 @@ public class DatesController {
             throw new EntityNotFoundException();
         }
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deleteDate(@PathVariable String id){
+        Optional<Date> optionalDate = repository.findById(id);
+        if (optionalDate.isPresent()) {
+            Date date = optionalDate.get();
+            date.setActive(false);
+
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new EntityNotFoundException();
+        }
+    }
+
+
 }

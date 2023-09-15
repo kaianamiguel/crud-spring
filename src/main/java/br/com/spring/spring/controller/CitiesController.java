@@ -3,7 +3,9 @@ package br.com.spring.spring.controller;
 import br.com.spring.spring.domain.City;
 import br.com.spring.spring.domain.CityRepository;
 import br.com.spring.spring.domain.RequestCitiesDTO;
+import br.com.spring.spring.domain.City;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +51,20 @@ public class CitiesController {
         } else {
             throw new EntityNotFoundException();
         }
+    }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deleteCity(@PathVariable String id){
+        Optional<City> optionalCity = repository.findById(id);
+        if (optionalCity.isPresent()) {
+            City city = optionalCity.get();
+            city.setActive(false);
+
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new EntityNotFoundException();
+        }
     }
 
 }

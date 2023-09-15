@@ -11,7 +11,7 @@ import java.io.Serializable;
 @EqualsAndHashCode (of = "id")
 @Getter
 @Setter
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class Category implements Serializable {
 
@@ -20,14 +20,15 @@ public class Category implements Serializable {
     @GeneratedValue (strategy = GenerationType.UUID)
     private String id;
 
+    private Boolean active;
+
     private String name;
 
     public Category(RequestCategoriesDTO requestCategoriesDTO) {
+
+        this.active = requestCategoriesDTO.active();
         this.name = requestCategoriesDTO.name();
     }
 
-    public Category(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+
 }

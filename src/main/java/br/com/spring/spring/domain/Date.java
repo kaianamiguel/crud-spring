@@ -22,6 +22,8 @@ public class Date implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    private Boolean active;
+
     @ManyToOne
     @JoinColumn(name = "users_id")
     private User user;
@@ -37,6 +39,7 @@ public class Date implements Serializable {
     private Place place;
 
     public Date(@Valid RequestDatesDTO requestDatesDTO) {
+        this.active = requestDatesDTO.active();
         this.user = requestDatesDTO.user();
         this.user1 = requestDatesDTO.user1();
         this.date = requestDatesDTO.date();

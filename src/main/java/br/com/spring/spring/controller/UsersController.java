@@ -4,6 +4,7 @@ import br.com.spring.spring.domain.RequestUsersDTO;
 import br.com.spring.spring.domain.User;
 import br.com.spring.spring.domain.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -54,8 +55,20 @@ public class UsersController {
         } else {
             throw new EntityNotFoundException();
         }
+    }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deleteUser(@PathVariable String id){
+        Optional<User> optionalUser = repository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setActive(false);
 
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new EntityNotFoundException();
+        }
     }
 
 }

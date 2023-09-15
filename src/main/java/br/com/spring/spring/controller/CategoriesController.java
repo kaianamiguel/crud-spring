@@ -3,7 +3,9 @@ package br.com.spring.spring.controller;
 import br.com.spring.spring.domain.Category;
 import br.com.spring.spring.domain.CategoryRepository;
 import br.com.spring.spring.domain.RequestCategoriesDTO;
+import br.com.spring.spring.domain.Category;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,9 +51,17 @@ public class CategoriesController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deleteCategory(@PathVariable String id){
+        Optional<Category> optionalCategory = repository.findById(id);
+        if (optionalCategory.isPresent()) {
+            Category category = optionalCategory.get();
+            category.setActive(false);
 
-
-
-
-
+            return ResponseEntity.noContent().build();
+        } else {
+            throw new EntityNotFoundException();
+        }
+    }
 }
